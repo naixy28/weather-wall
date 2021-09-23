@@ -1,8 +1,9 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
 import keke from '../assets/keke.svg'
+import guoguo from '../assets/guoguo.svg'
 import bgSun from '../assets/bg-sun.svg'
-import light from '../assets/light.svg'
+import bgRain from '../assets/bg-rain.svg'
 
 const FrameWrapper = styled.div`
   position: absolute;
@@ -11,8 +12,7 @@ const FrameWrapper = styled.div`
   line-height: 0;
   display: flex;
   flex-flow: column nowrap;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 50.07%, rgba(255, 255, 255, 0.5) 100%),
-    linear-gradient(168.19deg, #46bcff 1.34%, #bfe8ff 95.48%);
+  background: var(--sky-bg);
 
   .bg {
     position: absolute;
@@ -21,6 +21,13 @@ const FrameWrapper = styled.div`
     width: 100%;
     height: 100%;
   }
+  .mask {
+    position: absolute;
+    /* background: red; */
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(0.6vw);
+  }
   .cat {
     position: absolute;
     z-index: 10;
@@ -28,6 +35,11 @@ const FrameWrapper = styled.div`
   .cat-keke {
     width: 34.5vw;
     left: 4.8vw;
+    bottom: 0;
+  }
+  .cat-guoguo {
+    width: 50.5vw;
+    right: 0;
     bottom: 0;
   }
   .light {
@@ -62,7 +74,7 @@ const Window1 = styled.div`
       top: 0;
       width: 100vw;
       height: 100vw;
-      background: linear-gradient(238.46deg, #ffc9c6 -0.14%, rgba(255, 215, 213, 0) 96.93%);
+      background: var(--light-gradient);
       clip-path: polygon(14% 0, 100% 0, 100% 31%, 0 100%, 0 10%);
     }
   }
@@ -89,10 +101,9 @@ const Window2 = styled.div`
       position: absolute;
       right: 0;
       top: 0;
-      background: red;
       width: 100vw;
       height: 200vw;
-      background: linear-gradient(238.46deg, #ffc9c6 -0.14%, rgba(255, 215, 213, 0) 96.93%);
+      background: var(--light-gradient);
       clip-path: polygon(14% 0, 100% 0, 100% 53.5%, 0 87%, 0 6%);
     }
   }
@@ -105,10 +116,11 @@ const Table = styled.div`
   background: var(--table-bg);
 `
 
-export const Frame: FC = () => {
+export const Frame: FC<{ theme: 'light' | 'dark' }> = ({ theme }) => {
   return (
     <FrameWrapper>
-      <img className="bg" src={bgSun} />
+      <img className="bg" src={theme === 'light' ? bgSun : bgRain} />
+      {theme === 'dark' && <div className="mask"></div>}
       <Window1>
         <div className="inner" />
       </Window1>
@@ -116,7 +128,8 @@ export const Frame: FC = () => {
         <div className="inner" />
       </Window2>
       <Table></Table>
-      <img className="cat-keke cat" src={keke} />
+      {theme === 'light' && <img className="cat-keke cat" src={keke} />}
+      {theme === 'dark' && <img className="cat-guoguo cat" src={guoguo} />}
       {/* <img className="light" src={light} /> */}
     </FrameWrapper>
   )
