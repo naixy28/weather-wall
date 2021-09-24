@@ -4,7 +4,9 @@ import keke from '../assets/keke.svg'
 import guoguo from '../assets/guoguo.svg'
 import bgSun from '../assets/bg-sun.svg'
 import bgRain from '../assets/bg-rain.svg'
+import { AnimatePresence, motion } from 'framer-motion'
 
+// TODO
 const FrameWrapper = styled.div`
   position: absolute;
   width: 100%;
@@ -59,6 +61,7 @@ const Window1 = styled.div`
   border-left: 4.8vw solid var(--window-color);
   border-right: 4.8vw solid var(--window-color);
   z-index: 10;
+  transition: border 1s ease-in-out;
   .inner {
     height: 30.9vw;
     border-top: 2vw solid var(--window-inner-color);
@@ -87,6 +90,7 @@ const Window2 = styled.div`
   border-right: 4.8vw solid var(--window-color);
   border-bottom: 6.2vw solid var(--window-color);
   z-index: 9;
+  transition: border 1s ease-in-out;
   .inner {
     height: 107vw;
     border-top: 2vw solid var(--window-inner-color);
@@ -110,17 +114,92 @@ const Window2 = styled.div`
   }
 `
 
-const Table = styled.div`
+const Table = styled(motion.div)`
   position: relative;
-  /* height: 11.4vw; */
   flex: 1;
   background: var(--table-bg);
 `
 
+const Bg = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  opacity: 1;
+  /* transition: opacity 1s ease-in-out;
+  &.visible {
+    opacity: 1;
+  } */
+`
+
+const variants = {
+  hidden: {
+    opacity: 0,
+    transition: { duration: 1 },
+  },
+  visible: {
+    opacity: 1,
+    transition: { duration: 1 },
+  },
+}
+
 export const Frame: FC<{ theme: 'light' | 'dark' }> = ({ theme }) => {
   return (
     <FrameWrapper>
-      <img className="bg" src={theme === 'light' ? bgSun : bgRain} />
+      <AnimatePresence>
+        {theme === 'light' && (
+          <Bg
+            key="b0"
+            variants={variants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            style={{
+              background:
+                'linear-gradient(180deg, rgba(255, 255, 255, 0) 50.07%, rgba(255, 255, 255, 0.5) 100%), linear-gradient(168.19deg, #46bcff 1.34%, #bfe8ff 95.48%)',
+            }}
+          />
+        )}
+        {theme === 'dark' && (
+          <Bg
+            key="b1"
+            variants={variants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            style={{
+              background:
+                'linear-gradient(180deg, rgba(255, 255, 255, 0) 50.07%, rgba(255, 255, 255, 0.5) 100%),linear-gradient(168.19deg, #60747e 1.34%, #93aebd 95.48%)',
+            }}
+          />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {theme === 'light' && (
+          <motion.img
+            key="s0"
+            variants={variants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            className="bg"
+            src={bgSun}
+          />
+        )}
+        {theme === 'dark' && (
+          <motion.img
+            key="s1"
+            variants={variants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            className="bg"
+            src={bgRain}
+          />
+        )}
+      </AnimatePresence>
       {theme === 'dark' && <div className="mask"></div>}
       <Window1>
         <div className="inner" />
@@ -128,10 +207,33 @@ export const Frame: FC<{ theme: 'light' | 'dark' }> = ({ theme }) => {
       <Window2>
         <div className="inner" />
       </Window2>
-      <Table></Table>
-      {theme === 'light' && <img className="cat-keke cat" src={keke} />}
-      {theme === 'dark' && <img className="cat-guoguo cat" src={guoguo} />}
-      {/* <img className="light" src={light} /> */}
+      <Table
+        style={{ background: 'linear-gradient(180deg, #afafaf 0%, #afafaf 53.12%, #dddddd 53.12%, #dddddd 100%)' }}
+      />
+      <AnimatePresence>
+        {theme === 'light' && (
+          <motion.img
+            key="c0"
+            variants={variants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            className="cat-keke cat"
+            src={keke}
+          />
+        )}
+        {theme === 'dark' && (
+          <motion.img
+            key="c1"
+            variants={variants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            className="cat-guoguo cat"
+            src={guoguo}
+          />
+        )}
+      </AnimatePresence>
     </FrameWrapper>
   )
 }

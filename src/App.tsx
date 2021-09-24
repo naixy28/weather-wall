@@ -7,7 +7,8 @@ const AppWrapper = styled.div`
   position: relative;
   background: #fff;
   width: 100vw;
-  height: 100vh;
+  height: 177.778vw;
+  overflow: hidden;
   &.light {
     --window-color: #474e57;
     --window-inner-color: #85a0ab;
@@ -58,13 +59,13 @@ function App() {
   return (
     <AppWrapper className={theme}>
       <Frame theme={theme} />
-      <Switch
+      {/* <Switch
         onClick={() => {
           setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
         }}
       >
         Change
-      </Switch>
+      </Switch> */}
     </AppWrapper>
   )
 }
