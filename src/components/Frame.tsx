@@ -9,6 +9,7 @@ const FrameWrapper = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   line-height: 0;
   display: flex;
   flex-flow: column nowrap;

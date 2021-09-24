@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { Frame } from './components/Frame'
+import { Source, EventType } from './utils/eventSource'
 
 const AppWrapper = styled.div`
   position: relative;
@@ -25,12 +26,45 @@ const AppWrapper = styled.div`
   }
 `
 
+const Switch = styled.button`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 150px;
+  z-index: 100;
+`
+
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
+  const initConnection = useCallback(async () => {
+    const source = new Source()
+    source.on(EventType.MSG, ({ mood }) => {
+      if (mood === 'happy') {
+        setTheme('light')
+        return
+      }
+      if (mood === 'sad') {
+        setTheme('dark')
+        return
+      }
+    })
+    await source.connect()
+  }, [])
+
+  useEffect(() => {
+    initConnection()
+  }, [])
 
   return (
     <AppWrapper className={theme}>
       <Frame theme={theme} />
+      <Switch
+        onClick={() => {
+          setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
+        }}
+      >
+        Change
+      </Switch>
     </AppWrapper>
   )
 }
