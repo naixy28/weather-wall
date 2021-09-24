@@ -4,9 +4,10 @@ import keke from '../assets/keke.svg'
 import guoguo from '../assets/guoguo.svg'
 import bgSun from '../assets/bg-sun.svg'
 import bgRain from '../assets/bg-rain.svg'
+import light from '../assets/light.png'
 import { AnimatePresence, motion } from 'framer-motion'
+import cls from 'classnames'
 
-// TODO
 const FrameWrapper = styled.div`
   position: absolute;
   width: 100%;
@@ -16,6 +17,19 @@ const FrameWrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   background: var(--sky-bg);
+
+  .light {
+    position: absolute;
+    z-index: 10;
+    width: 93.3vw;
+    left: 0;
+    top: 8vw;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    &.visible {
+      opacity: 0.4;
+    }
+  }
 
   .bg {
     position: absolute;
@@ -45,14 +59,6 @@ const FrameWrapper = styled.div`
     right: 0;
     bottom: 0;
   }
-  .light {
-    position: absolute;
-    left: 0;
-    top: 7.6vw;
-    width: 93.2vw;
-    opacity: 0.7;
-    mix-blend-mode: overlay;
-  }
 `
 
 const Window1 = styled.div`
@@ -68,9 +74,9 @@ const Window1 = styled.div`
     border-left: 2vw solid var(--window-inner-color);
     border-right: 2vw solid var(--window-inner-color);
     position: relative;
-    &::after {
-      mix-blend-mode: overlay;
-      opacity: 0.4;
+    /* &::after {
+      outline: none;
+      opacity: 0.3;
       content: '';
       display: block;
       position: absolute;
@@ -80,7 +86,7 @@ const Window1 = styled.div`
       height: 100vw;
       background: var(--light-gradient);
       clip-path: polygon(14% 0, 100% 0, 100% 31%, 0 100%, 0 10%);
-    }
+    } */
   }
 `
 const Window2 = styled.div`
@@ -98,8 +104,8 @@ const Window2 = styled.div`
     border-right: 2vw solid var(--window-inner-color);
     border-bottom: 2vw solid var(--window-inner-color);
     position: relative;
-    &::after {
-      mix-blend-mode: overlay;
+    /* &::after {
+      outline: none;
       opacity: 0.4;
       content: '';
       display: block;
@@ -110,7 +116,7 @@ const Window2 = styled.div`
       height: 200vw;
       background: var(--light-gradient);
       clip-path: polygon(14% 0, 100% 0, 100% 53.5%, 0 87%, 0 6%);
-    }
+    } */
   }
 `
 
@@ -210,6 +216,7 @@ export const Frame: FC<{ theme: 'light' | 'dark' }> = ({ theme }) => {
       <Table
         style={{ background: 'linear-gradient(180deg, #afafaf 0%, #afafaf 53.12%, #dddddd 53.12%, #dddddd 100%)' }}
       />
+      <img className={cls('light', theme === 'light' && 'visible')} src={light} />
       <AnimatePresence>
         {theme === 'light' && (
           <motion.img

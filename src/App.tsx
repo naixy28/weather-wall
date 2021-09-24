@@ -9,11 +9,14 @@ const AppWrapper = styled.div`
   width: 100vw;
   height: 177.778vw;
   overflow: hidden;
+  * {
+    outline: none;
+  }
   &.light {
     --window-color: #474e57;
     --window-inner-color: #85a0ab;
     --table-bg: linear-gradient(180deg, #afafaf 0%, #afafaf 53.12%, #dddddd 53.12%, #dddddd 100%);
-    --light-gradient: linear-gradient(238.46deg, #989494 -0.14%, rgba(255, 255, 255, 0) 96.93%);
+    --light-gradient: linear-gradient(238.46deg, #ffc9c6 -0.14%, rgba(255, 215, 213, 0) 96.93%);
     --sky-bg: linear-gradient(180deg, rgba(255, 255, 255, 0) 50.07%, rgba(255, 255, 255, 0.5) 100%),
       linear-gradient(168.19deg, #46bcff 1.34%, #bfe8ff 95.48%);
   }
@@ -59,13 +62,13 @@ function App() {
   return (
     <AppWrapper className={theme}>
       <Frame theme={theme} />
-      {/* <Switch
+      <Switch
         onClick={() => {
           setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
         }}
       >
         Change
-      </Switch> */}
+      </Switch>
     </AppWrapper>
   )
 }
