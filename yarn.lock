@@ -217,6 +217,11 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/standalone@^7.14.9":
+  version "7.15.7"
+  resolved "https://registry.nlark.com/@babel/standalone/download/@babel/standalone-7.15.7.tgz#97c04d0dda7c3b2b8d2679957d619ac581471d4d"
+  integrity sha1-l8BNDdp8OyuNJnmVfWGaxYFHHU0=
+
 "@babel/template@^7.15.4":
   version "7.15.4"
   resolved "https://registry.nlark.com/@babel/template/download/@babel/template-7.15.4.tgz?cache=0&sync_timestamp=1630618899592&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40babel%2Ftemplate%2Fdownload%2F%40babel%2Ftemplate-7.15.4.tgz#51898d35dcf3faa670c4ee6afcfd517ee139f194"
@@ -340,6 +345,14 @@
   version "1.0.7"
   resolved "https://registry.npmmirror.com/@rushstack/eslint-patch/download/@rushstack/eslint-patch-1.0.7.tgz#82f83dcc2eb9b1e1d559b3aca96783e285eb8592"
   integrity sha1-gvg9zC65seHVWbOsqWeD4oXrhZI=
+
+"@sardinefish/zogra-renderer@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.npmmirror.com/@sardinefish/zogra-renderer/download/@sardinefish/zogra-renderer-1.2.0.tgz#91ad6143d8ffe829fe0cf5c521b526a413a6d17f"
+  integrity sha1-ka1hQ9j/6Cn+DPXFIbUmpBOm0X8=
+  dependencies:
+    gl-matrix "^3.3.0"
+    reflect-metadata "^0.1.13"
 
 "@types/classnames@^2.3.1":
   version "2.3.1"
@@ -469,6 +482,17 @@
   dependencies:
     "@typescript-eslint/types" "4.31.2"
     eslint-visitor-keys "^2.0.0"
+
+"@vitejs/plugin-legacy@^1.5.3":
+  version "1.5.3"
+  resolved "https://registry.nlark.com/@vitejs/plugin-legacy/download/@vitejs/plugin-legacy-1.5.3.tgz#3a2eabef302a6aa4feb2ce3cff6ddf95d573e9e1"
+  integrity sha1-Oi6r7zAqaqT+ss48/23fldVz6eE=
+  dependencies:
+    "@babel/standalone" "^7.14.9"
+    core-js "^3.16.0"
+    magic-string "^0.25.7"
+    regenerator-runtime "^0.13.9"
+    systemjs "^6.10.2"
 
 "@vitejs/plugin-react-refresh@^1.3.1":
   version "1.3.6"
@@ -736,6 +760,11 @@ core-js-pure@^3.16.0:
   version "3.18.0"
   resolved "https://registry.nlark.com/core-js-pure/download/core-js-pure-3.18.0.tgz?cache=0&sync_timestamp=1632079650629&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcore-js-pure%2Fdownload%2Fcore-js-pure-3.18.0.tgz#e5187347bae66448c9e2d67c01c34c4df3261dc5"
   integrity sha1-5RhzR7rmZEjJ4tZ8AcNMTfMmHcU=
+
+core-js@^3.16.0:
+  version "3.18.0"
+  resolved "https://registry.nlark.com/core-js/download/core-js-3.18.0.tgz?cache=0&sync_timestamp=1632078308388&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcore-js%2Fdownload%2Fcore-js-3.18.0.tgz#9af3f4a6df9ba3428a3fb1b171f1503b3f40cc49"
+  integrity sha1-mvP0pt+bo0KKP7GxcfFQOz9AzEk=
 
 cross-spawn@^7.0.2:
   version "7.0.3"
@@ -1283,6 +1312,11 @@ get-symbol-description@^1.0.0:
     call-bind "^1.0.2"
     get-intrinsic "^1.1.1"
 
+gl-matrix@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.npm.taobao.org/gl-matrix/download/gl-matrix-3.3.0.tgz#232eef60b1c8b30a28cbbe75b2caf6c48fd6358b"
+  integrity sha1-Iy7vYLHIswooy751ssr2xI/WNYs=
+
 glob-parent@^5.1.2:
   version "5.1.2"
   resolved "https://registry.nlark.com/glob-parent/download/glob-parent-5.1.2.tgz?cache=0&sync_timestamp=1626760165717&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fglob-parent%2Fdownload%2Fglob-parent-5.1.2.tgz#869832c58034fe68a4093c17dc15e8340d8401c4"
@@ -1671,6 +1705,13 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
+magic-string@^0.25.7:
+  version "0.25.7"
+  resolved "https://registry.nlark.com/magic-string/download/magic-string-0.25.7.tgz?cache=0&sync_timestamp=1618847046304&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fmagic-string%2Fdownload%2Fmagic-string-0.25.7.tgz#3f497d6fd34c669c6798dcb821f2ef31f5445051"
+  integrity sha1-P0l9b9NMZpxnmNy4IfLvMfVEUFE=
+  dependencies:
+    sourcemap-codec "^1.4.4"
+
 merge2@^1.3.0:
   version "1.4.1"
   resolved "https://registry.npm.taobao.org/merge2/download/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
@@ -1981,6 +2022,13 @@ queue-microtask@^1.2.2:
   resolved "https://registry.nlark.com/queue-microtask/download/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha1-SSkii7xyTfrEPg77BYyve2z7YkM=
 
+raindrop-fx@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.npmmirror.com/raindrop-fx/download/raindrop-fx-1.0.8.tgz#228713b1649ffc6fc928165056c524ae421c5a63"
+  integrity sha1-IocTsWSf/G/JKBZQVsUkrkIcWmM=
+  dependencies:
+    "@sardinefish/zogra-renderer" "^1.2.0"
+
 react-dom@^17.0.0:
   version "17.0.2"
   resolved "https://registry.npmmirror.com/react-dom/download/react-dom-17.0.2.tgz?cache=0&sync_timestamp=1632327667027&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Freact-dom%2Fdownload%2Freact-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
@@ -2025,7 +2073,12 @@ read-pkg@^3.0.0:
     normalize-package-data "^2.3.2"
     path-type "^3.0.0"
 
-regenerator-runtime@^0.13.4:
+reflect-metadata@^0.1.13:
+  version "0.1.13"
+  resolved "https://registry.nlark.com/reflect-metadata/download/reflect-metadata-0.1.13.tgz#67ae3ca57c972a2aa1642b10fe363fe32d49dc08"
+  integrity sha1-Z648pXyXKiqhZCsQ/jY/4y1J3Ag=
+
+regenerator-runtime@^0.13.4, regenerator-runtime@^0.13.9:
   version "0.13.9"
   resolved "https://registry.nlark.com/regenerator-runtime/download/regenerator-runtime-0.13.9.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fregenerator-runtime%2Fdownload%2Fregenerator-runtime-0.13.9.tgz#8925742a98ffd90814988d7566ad30ca3b263b52"
   integrity sha1-iSV0Kpj/2QgUmI11Zq0wyjsmO1I=
@@ -2175,6 +2228,11 @@ source-map@^0.5.0:
   resolved "https://registry.nlark.com/source-map/download/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
   integrity sha1-igOdLRAh0i0eoUyA2OpGi6LvP8w=
 
+sourcemap-codec@^1.4.4:
+  version "1.4.8"
+  resolved "https://registry.nlark.com/sourcemap-codec/download/sourcemap-codec-1.4.8.tgz#ea804bd94857402e6992d05a38ef1ae35a9ab4c4"
+  integrity sha1-6oBL2UhXQC5pktBaOO8a41qatMQ=
+
 spdx-correct@^3.0.0:
   version "3.1.1"
   resolved "https://registry.npm.taobao.org/spdx-correct/download/spdx-correct-3.1.1.tgz#dece81ac9c1e6713e5f7d1b6f17d468fa53d89a9"
@@ -2299,6 +2357,11 @@ supports-color@^7.1.0:
   integrity sha1-G33NyzK4E4gBs+R4umpRyqiWSNo=
   dependencies:
     has-flag "^4.0.0"
+
+systemjs@^6.10.2:
+  version "6.10.3"
+  resolved "https://registry.nlark.com/systemjs/download/systemjs-6.10.3.tgz?cache=0&sync_timestamp=1629217120054&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fsystemjs%2Fdownload%2Fsystemjs-6.10.3.tgz#7e783fccb58232f1d9eb05c7e1a661268945cade"
+  integrity sha1-fng/zLWCMvHZ6wXH4aZhJolFyt4=
 
 table@^6.0.9:
   version "6.7.1"

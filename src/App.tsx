@@ -39,7 +39,7 @@ const Switch = styled.button`
 `
 
 function App() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light')
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
   const initConnection = useCallback(async () => {
     const source = new Source()
     source.on(EventType.MSG, ({ mood }) => {

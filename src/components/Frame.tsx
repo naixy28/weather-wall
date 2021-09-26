@@ -1,13 +1,14 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useCallback, useRef } from 'react'
 import styled from 'styled-components'
 import keke from '../assets/keke.svg'
 import guoguo from '../assets/guoguo.svg'
 import bgSun from '../assets/bg-sun.svg'
 import bgRain from '../assets/bg-rain.svg'
+import bgRainImg from '../assets/bg-rain.png'
 import light from '../assets/light.png'
 import cloud from '../assets/cloud.svg'
-import { AnimatePresence, motion } from 'framer-motion'
 import cls from 'classnames'
+import RaindropFX from 'raindrop-fx'
 
 const FrameWrapper = styled.div`
   position: absolute;
@@ -81,6 +82,11 @@ const FrameWrapper = styled.div`
     width: 100%;
     height: 100%;
     backdrop-filter: blur(0.6vw);
+  }
+  #raindrop {
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
   .cat {
     position: absolute;
@@ -177,18 +183,35 @@ const Bg = styled.div`
   } */
 `
 
-const variants = {
-  hidden: {
-    opacity: 0,
-    transition: { duration: 1 },
-  },
-  visible: {
-    opacity: 1,
-    transition: { duration: 1 },
-  },
-}
-
 export const Frame: FC<{ theme: 'light' | 'dark' }> = ({ theme }) => {
+  const rainRef = useRef<RaindropFX>()
+  const initRain = useCallback(() => {
+    const canvas = document.querySelector('#raindrop') as HTMLCanvasElement
+    canvas.width = 375 / 2
+    canvas.height = 667 / 2
+    const raindropFx = new RaindropFX({
+      canvas,
+      background: bgRainImg,
+      backgroundBlurSteps: 2,
+      mistTime: 3,
+      mist: false,
+      spawnSize: [30, 40],
+      // spawnLimit: 200,
+      // dropletSize: [50, 80],
+      // spawnInterval: [0.4, 0.7],
+      // mistBlurStep: 5,
+    })
+    raindropFx.start()
+    rainRef.current = raindropFx
+  }, [])
+  useEffect(() => {
+    if (theme === 'dark' && window.innerWidth <= 500) {
+      initRain()
+    }
+    return () => {
+      rainRef?.current?.stop()
+    }
+  }, [theme])
   return (
     <FrameWrapper>
       <div className={cls('light-wrapper', theme === 'light' && 'visible')}>
@@ -213,6 +236,7 @@ export const Frame: FC<{ theme: 'light' | 'dark' }> = ({ theme }) => {
         />
         <img className="bg" src={bgRain} />
         <div className="mask"></div>
+        <canvas id="raindrop" />
       </div>
       <Window1>
         <div className="inner" />
