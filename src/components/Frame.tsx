@@ -5,6 +5,7 @@ import guoguo from '../assets/guoguo.svg'
 import bgSun from '../assets/bg-sun.svg'
 import bgRain from '../assets/bg-rain.svg'
 import light from '../assets/light.png'
+import cloud from '../assets/cloud.svg'
 import { AnimatePresence, motion } from 'framer-motion'
 import cls from 'classnames'
 
@@ -17,18 +18,54 @@ const FrameWrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   background: var(--sky-bg);
+  .light-wrapper,
+  .dark-wrapper {
+    opacity: 0;
+    transition: opacity 1s linear;
+    will-change: opacity;
+  }
+  .visible {
+    opacity: 1;
+  }
 
+  @keyframes float {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(150vw, 0, 0);
+    }
+  }
+
+  .cloud {
+    position: absolute;
+    animation-name: float;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    will-change: transform;
+  }
+  .cloud-0 {
+    animation-duration: 20s;
+    width: 53vw;
+    left: -53vw;
+    top: 24vw;
+  }
+  .cloud-1 {
+    animation-duration: 30s;
+    animation-delay: 5s;
+    width: 45vw;
+    left: -53vw;
+    top: 54vw;
+  }
   .light {
+    pointer-events: none;
     position: absolute;
     z-index: 10;
     width: 93.3vw;
     left: 0;
     top: 8vw;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    &.visible {
-      opacity: 0.4;
-    }
+    opacity: 0.4;
   }
 
   .bg {
@@ -120,13 +157,13 @@ const Window2 = styled.div`
   }
 `
 
-const Table = styled(motion.div)`
+const Table = styled.div`
   position: relative;
   flex: 1;
   background: var(--table-bg);
 `
 
-const Bg = styled(motion.div)`
+const Bg = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
@@ -154,59 +191,29 @@ const variants = {
 export const Frame: FC<{ theme: 'light' | 'dark' }> = ({ theme }) => {
   return (
     <FrameWrapper>
-      <AnimatePresence>
-        {theme === 'light' && (
-          <Bg
-            key="b0"
-            variants={variants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            style={{
-              background:
-                'linear-gradient(180deg, rgba(255, 255, 255, 0) 50.07%, rgba(255, 255, 255, 0.5) 100%), linear-gradient(168.19deg, #46bcff 1.34%, #bfe8ff 95.48%)',
-            }}
-          />
-        )}
-        {theme === 'dark' && (
-          <Bg
-            key="b1"
-            variants={variants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            style={{
-              background:
-                'linear-gradient(180deg, rgba(255, 255, 255, 0) 50.07%, rgba(255, 255, 255, 0.5) 100%),linear-gradient(168.19deg, #60747e 1.34%, #93aebd 95.48%)',
-            }}
-          />
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {theme === 'light' && (
-          <motion.img
-            key="s0"
-            variants={variants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            className="bg"
-            src={bgSun}
-          />
-        )}
-        {theme === 'dark' && (
-          <motion.img
-            key="s1"
-            variants={variants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            className="bg"
-            src={bgRain}
-          />
-        )}
-      </AnimatePresence>
-      {theme === 'dark' && <div className="mask"></div>}
+      <div className={cls('light-wrapper', theme === 'light' && 'visible')}>
+        <Bg
+          style={{
+            background:
+              'linear-gradient(180deg, rgba(255, 255, 255, 0) 50.07%, rgba(255, 255, 255, 0.5) 100%), linear-gradient(168.19deg, #46bcff 1.34%, #bfe8ff 95.48%)',
+          }}
+        />
+        <div>
+          <img className="cloud cloud-0" src={cloud} />
+          <img className="cloud cloud-1" src={cloud} />
+          <img className="bg" src={bgSun} />
+        </div>
+      </div>
+      <div className={cls('dark-wrapper', theme === 'dark' && 'visible')}>
+        <Bg
+          style={{
+            background:
+              'linear-gradient(180deg, rgba(255, 255, 255, 0) 50.07%, rgba(255, 255, 255, 0.5) 100%),linear-gradient(168.19deg, #60747e 1.34%, #93aebd 95.48%)',
+          }}
+        />
+        <img className="bg" src={bgRain} />
+        <div className="mask"></div>
+      </div>
       <Window1>
         <div className="inner" />
       </Window1>
@@ -216,31 +223,13 @@ export const Frame: FC<{ theme: 'light' | 'dark' }> = ({ theme }) => {
       <Table
         style={{ background: 'linear-gradient(180deg, #afafaf 0%, #afafaf 53.12%, #dddddd 53.12%, #dddddd 100%)' }}
       />
-      <img className={cls('light', theme === 'light' && 'visible')} src={light} />
-      <AnimatePresence>
-        {theme === 'light' && (
-          <motion.img
-            key="c0"
-            variants={variants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            className="cat-keke cat"
-            src={keke}
-          />
-        )}
-        {theme === 'dark' && (
-          <motion.img
-            key="c1"
-            variants={variants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            className="cat-guoguo cat"
-            src={guoguo}
-          />
-        )}
-      </AnimatePresence>
+      <div className={cls('light-wrapper', theme === 'light' && 'visible')} style={{ zIndex: 10 }}>
+        <img className={cls('light')} src={light} />
+        <img className="cat-keke cat" src={keke} />
+      </div>
+      <div className={cls('dark-wrapper', theme === 'dark' && 'visible')} style={{ zIndex: 10 }}>
+        <img className="cat-guoguo cat" src={guoguo} />
+      </div>
     </FrameWrapper>
   )
 }

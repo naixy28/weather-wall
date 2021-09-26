@@ -62,13 +62,13 @@ function App() {
   return (
     <AppWrapper className={theme}>
       <Frame theme={theme} />
-      <Switch
+      {/* <Switch
         onClick={() => {
           setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
         }}
       >
         Change
-      </Switch>
+      </Switch> */}
     </AppWrapper>
   )
 }
