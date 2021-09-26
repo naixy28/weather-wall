@@ -187,15 +187,15 @@ export const Frame: FC<{ theme: 'light' | 'dark' }> = ({ theme }) => {
   const rainRef = useRef<RaindropFX>()
   const initRain = useCallback(() => {
     const canvas = document.querySelector('#raindrop') as HTMLCanvasElement
-    canvas.width = 375 / 2
-    canvas.height = 667 / 2
+    canvas.width = 375 * 2
+    canvas.height = 667 * 2
     const raindropFx = new RaindropFX({
       canvas,
       background: bgRainImg,
-      backgroundBlurSteps: 2,
-      mistTime: 3,
+      // backgroundBlurSteps: 2,
+      // mistTime: 3,
       mist: false,
-      spawnSize: [30, 40],
+      // spawnSize: [30, 40],
       // spawnLimit: 200,
       // dropletSize: [50, 80],
       // spawnInterval: [0.4, 0.7],
@@ -205,7 +205,7 @@ export const Frame: FC<{ theme: 'light' | 'dark' }> = ({ theme }) => {
     rainRef.current = raindropFx
   }, [])
   useEffect(() => {
-    if (theme === 'dark' && window.innerWidth <= 500) {
+    if (theme === 'dark') {
       initRain()
     }
     return () => {
