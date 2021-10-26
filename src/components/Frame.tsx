@@ -206,7 +206,7 @@ export const Frame: FC<{ theme: 'light' | 'dark' }> = ({ theme }) => {
   }, [])
   useEffect(() => {
     if (theme === 'dark') {
-      initRain()
+      // initRain()
     }
     return () => {
       rainRef?.current?.stop()
@@ -254,6 +254,15 @@ export const Frame: FC<{ theme: 'light' | 'dark' }> = ({ theme }) => {
       <div className={cls('dark-wrapper', theme === 'dark' && 'visible')} style={{ zIndex: 10 }}>
         <img className="cat-guoguo cat" src={guoguo} />
       </div>
+      {/* <Btn>shot</Btn> */}
     </FrameWrapper>
   )
 }
+
+const Btn = styled.button`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 150px;
+  z-index: 100;
+`
