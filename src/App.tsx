@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { Frame } from './components/Frame'
 import { Source, EventType } from './utils/eventSource'
+import santa from './assets/santa.png'
 
 const AppWrapper = styled.div`
   position: relative;
@@ -9,6 +10,10 @@ const AppWrapper = styled.div`
   width: 100vw;
   height: 177.778vw;
   overflow: hidden;
+  .santa {
+    width: 100%;
+    height: 100%;
+  }
   * {
     outline: none;
   }
@@ -61,7 +66,8 @@ function App() {
 
   return (
     <AppWrapper className={theme}>
-      <Frame theme={theme} />
+      <img className="santa" src={santa} />
+      {/* <Frame theme={theme} /> */}
       {/* <Switch
         onClick={() => {
           setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
