@@ -36,15 +36,28 @@ const AppWrapper = styled.div`
 `
 
 const Switch = styled.button`
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+  all: unset;
+  position: fixed;
+  top: 10px;
+  left: 10px;
   width: 150px;
   z-index: 100;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  color: white;
+  background: hsla(0, 0%, 20%, 0.5);
+  padding: 2px;
+  text-align: center;
+  border-radius: 4px;
+  opacity: 0.3;
+  transition: all 0.3s ease-in-out;
+  :hover {
+    opacity: 1;
+  }
 `
 
 function App() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const initConnection = useCallback(async () => {
     const source = new Source()
     source.on(EventType.MSG, ({ mood }) => {
@@ -61,21 +74,23 @@ function App() {
   }, [])
 
   useEffect(() => {
-    initConnection()
+    // initConnection()
   }, [])
 
   return (
-    <AppWrapper className={theme}>
-      <img className="santa" src={santa} />
-      {/* <Frame theme={theme} /> */}
-      {/* <Switch
+    <>
+      <AppWrapper className={theme}>
+        {/* <img className="santa" src={santa} /> */}
+        <Frame theme={theme} />
+      </AppWrapper>
+      <Switch
         onClick={() => {
           setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
         }}
       >
-        Change
-      </Switch> */}
-    </AppWrapper>
+        Switch weather
+      </Switch>
+    </>
   )
 }
 

@@ -206,7 +206,7 @@ export const Frame: FC<{ theme: 'light' | 'dark' }> = ({ theme }) => {
   }, [])
   useEffect(() => {
     if (theme === 'dark') {
-      // initRain()
+      initRain()
     }
     return () => {
       rainRef?.current?.stop()
